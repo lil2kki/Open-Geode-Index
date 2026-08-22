@@ -6,7 +6,7 @@ using namespace geode::prelude;
 
 #define SETTING(type, key_name) Mod::get()->getSettingValue<type>(key_name)
 
-auto myAPI = std::string("open-geode-index.bccst.ru");
+auto myAPI = std::string("open-geode.7m.pl");
 
 auto enabled = true;
 
@@ -90,8 +90,8 @@ class $modify(PopupCatch, FLAlertLayer) {
     }
 	void show() {
 		FLAlertLayer::show();
-        if (typeinfo_cast<FiltersPopup*>(this)) setupForFiltersPopup();
-		if (typeinfo_cast<ModPopup*>(this)) setupForModPopup();
+        if (typeinfo_cast<FiltersPopup*>(this) and CCScene::get()->querySelector("ModsLayer")) setupForFiltersPopup();
+		if (typeinfo_cast<ModPopup*>(this) and CCScene::get()->querySelector("ModsLayer")) setupForModPopup();
 	}
 };
 
