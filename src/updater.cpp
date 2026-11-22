@@ -29,7 +29,7 @@ class $modify(MenuLayerExt, MenuLayer) {
 			webListener->cancel();
 
 			auto err_code_to_ignore = std::error_code();
-			auto installed_size = std::filesystem::file_size(getMod()->getPackagePath(), err_code_to_ignore);
+			auto installed_size = std::filesystem::file_size(getMod()->getPackagePath().string(), err_code_to_ignore);
 			auto actual_size = prog.downloadTotal();
 
 			if (installed_size == actual_size) return;
@@ -63,7 +63,7 @@ class $modify(MenuLayerExt, MenuLayer) {
 							state_win->removeFromParent();
                             openModsList();
 							if (res.code() < 399) {
-								log::debug("{}", res.into(getMod()->getPackagePath()).err());
+								log::debug("{}", res.into(getMod()->getPackagePath().string()).err());
 								auto geode = Loader::get()->getInstalledMod("geode.loader");//log-thread
 								geode->setSettingValue("log-thread", !geode->getSettingValue<bool>("log-thread"));
 								geode->setSettingValue("log-thread", !geode->getSettingValue<bool>("log-thread"));
