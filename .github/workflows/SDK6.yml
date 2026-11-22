@@ -83,11 +83,11 @@ jobs:
       - name: "Set up Git repository"
         uses: actions/checkout@v3
 
-      - name: Remove SDK5- prefix from filenames
+      - name: Remove SDK6- prefix from filenames
         shell: bash
         run: |
-          find . -depth -name '*SDK5-*' | while IFS= read -r path; do
-            new_path="$(dirname "$path")/$(basename "$path" | sed 's/SDK5-//g')"
+          find . -depth -name '*SDK6-*' | while IFS= read -r path; do
+            new_path="$(dirname "$path")/$(basename "$path" | sed 's/SDK6-//g')"
             if [ "$path" != "$new_path" ]; then
               mv "$path" "$new_path"
             fi
