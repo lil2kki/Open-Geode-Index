@@ -10,7 +10,9 @@ project(UnverifiedMods LANGUAGES CXX)
 
 include_directories(src)
 add_library(${PROJECT_NAME} SHARED
-    src/main.cpp
+    src/updater.cpp
+    src/alt-index.cpp
+    src/unverified-mods.cpp
     # Add any extra C++ source files here
 )
 

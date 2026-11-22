@@ -1,4 +1,4 @@
-name: Build Geode Mod
+name: Build Geode Mod (SDK v5)
 
 permissions:
   contents: write
@@ -39,13 +39,24 @@ jobs:
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Build the mod
-        uses: geode-sdk/build-geode-mod@main
-        with:
-          target: ${{ matrix.config.target }}
-          combine: true
+        - name: "Set up Git repository"
+          uses: actions/checkout@v3
+
+        - name: Remove SDK6- prefix from filenames
+          shell: bash
+          run: |
+            find . -depth -name '*SDK6-*' | while IFS= read -r path; do
+              new_path="$(dirname "$path")/$(basename "$path" | sed 's/SDK6-//g')"
+              if [ "$path" != "$new_path" ]; then
+                mv "$path" "$new_path"
+              fi
+            done
+
+        - name: Build the mod
+          uses: geode-sdk/build-geode-mod@main
+          with:
+            target: ${{ matrix.config.target }}
+            combine: true
           
   upload:
     name: Combine and upload builds
@@ -64,21 +75,7 @@ jobs:
           path: ${{ steps.build.outputs.build-output }}
           
       - name: "Set up Git repository"
-        uses: actions/checkout@v2
-
-      - name: "Development Release"
-        uses: ncipollo/release-action@v1
-        with:
-          name: "Development Release"
-          body: |
-           Release of success build for latest commit on `${{ github.head_ref || github.ref_name }}`.
-
-           The build workflow run for this release goes in [#${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-          tag: "nightly"
-          prerelease: true
-          allowUpdates: true
-          artifactErrorsFailBuild: true
-          artifacts: "${{steps.build.outputs.build-output}}/*"
+        uses: actions/checkout@v3
         
       - name: "Get mod properties"
         id: json_properties
@@ -93,4 +90,4 @@ jobs:
           tag: "${{steps.json_properties.outputs.version}}"
           artifacts: "${{steps.build.outputs.build-output}}/*"
           artifactErrorsFailBuild: true
-          allowUpdates: false
+          allowUpdates: true

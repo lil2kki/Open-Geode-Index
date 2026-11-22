@@ -1,6 +1,10 @@
+# 1.3.1
+- Include [Unverified Mods](https://github.com/lil2kki/Unverified-Mods)
+- Move from 7m.pl to pcpapc172's hosting!
+
 # 1.3.0
 - Fix Alt. Index checkbox showing in Object Workshop filter window ([#3](https://github.com/lil2kki/Open-Geode-Index/issues/3))
-- Move to open-geode.7m.pl from open-geode.7m.pl (from paid to free hosting...)
+- Move from bccst.ru to 7m.pl hosting...
 
 # 1.2.0
 - More org api upstreams

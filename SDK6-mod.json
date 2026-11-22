@@ -1,0 +1,19 @@
+{
+	"geode": "v6.0.0-beta.1",
+	"gd": {
+		"win": "2.2081",
+		"android": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081"
+	},
+	"id": "lil2kki.open-geode-index-sdk6",
+	"name": "\u30FBAlt. Index And Unverified Mods\u30FB",
+	"version": "v1.3.1",
+	"developer": "lil2kki",
+	"description": "Make you able to see unverified mods and ALTERNATIVE catalog for Geode Loader!",
+	"links": {
+		"homepage": "https://t.me/thaLILNIKKI",
+		"community": "https://discord.gg/kXjQ8QEWNU",
+		"source": "https://github.com/lil2kki/Open-Geode-Index"
+	}
+}
